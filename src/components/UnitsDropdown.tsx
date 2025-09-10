@@ -23,7 +23,7 @@ const UnitsDropdown = ({ buttonLabel, buttonIcon, dropdownLabel, chosenUnit, set
   return (
     <div className="relative">
       <button type="button"
-        className="bg-(--neutral-800) text-(--neutral-0) inline-flex items-center justify-center rounded-md text-sm h-10 px-4 py-2" onClick={handleToggle}>
+        className="bg-(--neutral-800) text-(--neutral-0) inline-flex items-center justify-center rounded-md text-sm h-[33px] w-[89px] md:h-[43px] md:w-[119px] px-4 py-2 cursor-pointer" onClick={handleToggle}>
         <img src={buttonIcon} className="mr-2" />
         {buttonLabel}
         <span className="ml-2">
