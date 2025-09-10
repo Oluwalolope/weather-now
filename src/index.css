@@ -1,1 +1,96 @@
 @import "tailwindcss";
+
+:root {
+    /* color pallette */
+    --neutral-0: hsl(0, 0%, 100%);
+    --neutral-200: hsl(250, 6%, 84%);
+    --neutral-300: hsl(240, 6%, 70%);
+    --neutral-600: hsl(243, 23%, 30%);
+    --neutral-700: hsl(243, 23%, 24%);
+    --neutral-800: hsl(243, 27%, 20%);
+    --neutral-900: hsl(243, 96%, 9%);
+
+    --orange-500: hsl(28, 100%, 52%);
+
+    --blue-500: hsl(233, 67%, 56%);
+    --blue-700: hsl(248, 70%, 36%);
+}
+
+@theme {
+    --font-DM-Sans: 'DM Sans', sans-serif;
+    --font-Bricolage-Grotesque: 'Bricolage Grotesque', sans-serif;
+}
+
+@utility text-preset-1 {
+    font-family: var(--font-DM-Sans);
+    font-weight: 600;
+    font-style: italic;
+    font-size: 6rem;
+    line-height: 100%;
+    letter-spacing: -2px;
+}
+
+@utility text-preset-2 {
+    font-family: var(--font-Bricolage-Grotesque);
+    font-weight: 700;
+    font-style: normal;
+    font-size: 3.25rem;
+    line-height: 120%;
+    letter-spacing: 0;
+}
+@utility text-preset-3 {
+    font-family: var(--font-DM-Sans);
+    font-weight: 300;
+    font-style: normal;
+    font-size: 2rem;
+    line-height: 100%;
+    letter-spacing: 0;
+}
+@utility text-preset-4 {
+    font-family: var(--font-DM-Sans);
+    font-weight: 700;
+    font-style: normal;
+    font-size: 1.75rem;
+    line-height: 120%;
+    letter-spacing: 0;
+}
+@utility text-preset-5 {
+    font-family: var(--font-DM-Sans);
+    font-weight: 600;
+    font-style: normal;
+    font-size: 1.25rem;
+    line-height: 120%;
+    letter-spacing: 0;
+}
+@utility text-preset-5-medium {
+    font-family: var(--font-DM-Sans);
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1.25rem;
+    line-height: 120%;
+    letter-spacing: 0;
+}
+@utility text-preset-6 {
+    font-family: var(--font-DM-Sans);
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1.125rem;
+    line-height: 120%;
+    letter-spacing: 0;
+}
+@utility text-preset-7 {
+    font-family: var(--font-DM-Sans);
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1rem;
+    line-height: 120%;
+    letter-spacing: 0;
+}
+@utility text-preset-8 {
+    font-family: var(--font-DM-Sans);
+    font-weight: 500;
+    font-style: normal;
+    font-size: 0.875rem;
+    line-height: 120%;
+    letter-spacing: 0;
+}
