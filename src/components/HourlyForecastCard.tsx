@@ -11,23 +11,24 @@ type HourlyForecastCardProps = {
     forecast: string;
     hour: string;
     temperature: string;
+    isLoading: boolean;
 }
 
-const HourlyForecastCard = ({forecast, hour, temperature}: HourlyForecastCardProps) => {
+const HourlyForecastCard = ({forecast, hour, temperature, isLoading}: HourlyForecastCardProps) => {
     return (
-        <li className='flex flex-row justify-between items-center bg-(--neutral-700) border border-(--neutral-600) rounded-lg w-full h-[60px] ps-3 pe-4 py-2.5'>
+        <li className={`flex flex-row justify-between items-center ${isLoading ? 'motion-safe:animate-loading' : ''} bg-(--neutral-700) border border-(--neutral-600) rounded-lg w-full h-[60px] ps-3 pe-4 py-2.5`}>
             <div className='inline-flex items-center gap-2'>
-                {forecast === 'Sunny' && <img className='size-[40px] object-cover' src={iconSunny} alt="Sunny" />}
-                {forecast === 'Rain' && <img className='size-[40px] object-cover' src={iconRain} alt="Rain" />}
-                {forecast === 'Fog' && <img className='size-[40px] object-cover' src={iconFog} alt="Fog" />}
-                {forecast === 'Overcast' && <img className='size-[40px] object-cover' src={iconOvercast} alt="Overcast" />}
-                {forecast === 'Snow' && <img className='size-[40px] object-cover' src={iconSnow} alt="Snow" />}
-                {forecast === 'Storm' && <img className='size-[40px] object-cover' src={iconStorm} alt="Storm" />}
-                {forecast === 'Partly Cloudy' && <img className='size-[40px] object-cover' src={iconPartlyCloudy} alt="Partly Cloudy" />}
-                {forecast === 'Drizzle' && <img className='size-[40px] object-cover' src={iconDrizzle} alt="Drizzle" />}
-                <span className='text-preset-5-medium text-(--neutral-0)'>{hour}</span>
+                {(forecast === 'Sunny' && !isLoading) && <img className='w-[60px] h-[60px] object-cover' src={iconSunny} alt="Sunny" />}
+                {(forecast === 'Rain' && !isLoading) && <img className='w-[60px] h-[60px] object-cover' src={iconRain} alt="Rain" />}
+                {(forecast === 'Fog' && !isLoading) && <img className='w-[60px] h-[60px] object-cover' src={iconFog} alt="Fog" />}
+                {(forecast === 'Overcast' && !isLoading) && <img className='w-[60px] h-[60px] object-cover' src={iconOvercast} alt="Overcast" />}
+                {(forecast === 'Snow' && !isLoading) && <img className='w-[60px] h-[60px] object-cover' src={iconSnow} alt="Snow" />}
+                {(forecast === 'Storm' && !isLoading) && <img className='w-[60px] h-[60px] object-cover' src={iconStorm} alt="Storm" />}
+                {(forecast === 'Partly Cloudy' && !isLoading) && <img className='w-[60px] h-[60px] object-cover' src={iconPartlyCloudy} alt="Partly Cloudy" />}
+                {(forecast === 'Drizzle' && !isLoading) && <img className='w-[60px] h-[60px] object-cover' src={iconDrizzle} alt="Drizzle" />}
+                { !isLoading && <span className='text-preset-5-medium text-(--neutral-0)'>{hour}</span>}
             </div>
-            <p className='text-preset-7 text-(--neutral-0)'>{temperature}</p>
+            {!isLoading && <p className='text-preset-7 text-(--neutral-0)'>{temperature}</p>}
         </li>
     );
 }

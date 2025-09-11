@@ -25,6 +25,17 @@
     --font-Bricolage-Grotesque: 'Bricolage Grotesque', sans-serif;
 }
 
+@theme {
+   --animate-loading: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+   @keyframes pulse {
+        50% {
+    opacity: 0.7;
+  }
+}
+}
+
+
 @utility text-preset-1 {
     font-family: var(--font-DM-Sans);
     font-weight: 600;
