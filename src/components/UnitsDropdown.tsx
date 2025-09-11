@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
-interface SingleLevelDropdownMenuProps {
+type UnitsDropdownProps = {
   buttonLabel: string;
   buttonIcon: string;
   dropdownLabel: string;
@@ -14,7 +14,7 @@ interface SingleLevelDropdownMenuProps {
   }[];
 }
 
-const UnitsDropdown = ({ buttonLabel, buttonIcon, dropdownLabel, chosenUnit, setChosenUnit, items }: SingleLevelDropdownMenuProps) => {
+const UnitsDropdown = ({ buttonLabel, buttonIcon, dropdownLabel, chosenUnit, setChosenUnit, items }: UnitsDropdownProps) => {
     const [open, setOpen] = useState(false);
     const handleToggle = () => {
         setOpen((prev) => !prev);
@@ -31,7 +31,7 @@ const UnitsDropdown = ({ buttonLabel, buttonIcon, dropdownLabel, chosenUnit, set
         </span>
       </button>
       {open && (
-        <div className="absolute right-0 mt-2 shadow-md rounded-xl px-2 py-1.5 border bg-(--neutral-700)">
+        <div className="absolute z-10 right-0 mt-2 shadow-md rounded-xl px-2 py-1.5 border bg-(--neutral-700)">
             <p className="text-preset-7 text-(--neutral-0) px-4 py-2">{dropdownLabel}</p>
           <ul className="w-56 h-auto gap-y-1 flex flex-col">
             {items.map((item, index) => (

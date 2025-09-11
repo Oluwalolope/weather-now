@@ -4,7 +4,7 @@ import UnitsDropdown from "./UnitsDropdown";
 
 const Header = ({ unit, onUnitChange }: { unit: 'metric' | 'imperial', onUnitChange: (newUnit: 'metric' | 'imperial') => void }) => {
     return (
-    <header className="w-full max-w-3xl flex items-center justify-between">
+    <header className="w-full max-w-[1216px] flex items-center justify-between">
         <Logo />
         <UnitsDropdown buttonIcon={unitIcon} buttonLabel="Units" dropdownLabel={`Switch to ${unit === 'metric' ? 'imperial' : 'metric'}`} chosenUnit={unit} setChosenUnit={onUnitChange} items={[
           { measuredQuantity: "Temperature", metricUnit: "Celsius (°C)", imperialUnit: "Fahrenheit (°F)" },

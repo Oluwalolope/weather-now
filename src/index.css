@@ -16,6 +16,10 @@
     --blue-700: hsl(248, 70%, 36%);
 }
 
+*{
+    box-sizing: border-box;
+}
+
 @theme {
     --font-DM-Sans: 'DM Sans', sans-serif;
     --font-Bricolage-Grotesque: 'Bricolage Grotesque', sans-serif;
@@ -93,4 +97,9 @@
     font-size: 0.875rem;
     line-height: 120%;
     letter-spacing: 0;
+}
+
+@plugin 'tailwind-scrollbar' {
+    nocompatible: true;
+    preferredStrategy: 'pseudoelements'
 }
