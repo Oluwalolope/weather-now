@@ -3,7 +3,7 @@ import iconError from '../assets/icon-error.svg';
 import iconRetry from '../assets/icon-retry.svg';
 
 type ServerErrorProps = {
-  onHandleServerError: (serverStatus: boolean) => void;
+  onHandleServerError: (identifier: string, serverStatus: boolean) => void;
 }
 
 const ServerError = ({ onHandleServerError }: ServerErrorProps) => {
@@ -13,7 +13,8 @@ const ServerError = ({ onHandleServerError }: ServerErrorProps) => {
         setIsLoading(true);
         setTimeout(() => {
             setIsLoading(false);
-            onHandleServerError(true);
+            onHandleServerError('isServerWorking', true);
+            console.log('Server reconnected');
         }, 2000);
     }
     return (

@@ -4,7 +4,7 @@ import HourlyForecastCard from "./HourlyForecastCard";
 type HourlyForecastProps = {
     chosenDay: string;
     isLoading: boolean;
-    handleChangeChosenDay: (day: string) => void;
+    handleChangeChosenDay: (chosenDay: string, day: string) => void;
 }
 
 const HourlyForecast = ({chosenDay, isLoading, handleChangeChosenDay}: HourlyForecastProps) => {

@@ -2,7 +2,12 @@ import Logo from "./Logo";
 import unitIcon from "../assets/icon-units.svg";
 import UnitsDropdown from "./UnitsDropdown";
 
-const Header = ({ unit, onUnitChange }: { unit: 'metric' | 'imperial', onUnitChange: (newUnit: 'metric' | 'imperial') => void }) => {
+type HeaderProps = {
+    unit: 'metric' | 'imperial';
+    onUnitChange: (identifier: string, value: 'metric' | 'imperial') => void;
+}
+
+const Header = ({ unit, onUnitChange }: HeaderProps) => {
     return (
     <header className="w-full max-w-[1216px] flex items-center justify-between">
         <Logo />

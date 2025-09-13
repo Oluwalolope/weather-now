@@ -4,18 +4,18 @@ import DailyForecast from "./DailyForecast";
 
 type ForecastProps = {
     chosenDay: string;
-    isLoading: boolean;
-    onChangeChosenDay: (day: string) => void;
+    isSearching: boolean;
+    onChangeChosenDay: (identifier: string, day: string) => void;
 }
 
-const Forecast = ({chosenDay, isLoading, onChangeChosenDay}: ForecastProps) => {
+const Forecast = ({chosenDay, isSearching, onChangeChosenDay}: ForecastProps) => {
     return (
         <div className="w-full max-w-[1216px] flex flex-col gap-8 md:w-[720px] xl:w-full xl:flex-row">
             <div className="xl:flex-2">
-                <CurrentForecast isLoading={isLoading} />
-                <DailyForecast isLoading={isLoading} />
+                <CurrentForecast isLoading={isSearching} />
+                <DailyForecast isLoading={isSearching} />
             </div>
-            <HourlyForecast chosenDay={chosenDay} isLoading={isLoading} handleChangeChosenDay={onChangeChosenDay}/>
+            <HourlyForecast chosenDay={chosenDay} isLoading={isSearching} handleChangeChosenDay={onChangeChosenDay}/>
         </div>
     );
 }

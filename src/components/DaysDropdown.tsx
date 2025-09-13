@@ -3,7 +3,7 @@ import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 type DaysDropdownProps = {
   chosenDay: string;
-  setChosenDay: (day: string) => void;
+  setChosenDay: (identifier: string, day: string) => void;
   days: string[];
 }
 
@@ -27,7 +27,7 @@ const DaysDropdown = ({ chosenDay, setChosenDay, days }: DaysDropdownProps) => {
           <ul className="w-56 h-auto gap-y-1 flex flex-col">
             {days.map((day, index) => (
               <li key={index} className={`relative flex-col items-center gap-2 px-4`}>
-                <button className={`text-preset-7 text-(--neutral-0) w-full h-10 px-2 py-2.5 inline-flex items-center justify-between text-left cursor-pointer hover:bg-(--neutral-600) rounded-lg ${chosenDay === day ? 'bg-(--neutral-600)' : ''}`} onClick={() => {setChosenDay?.(day); setOpen(false)}} type="button">
+                <button className={`text-preset-7 text-(--neutral-0) w-full h-10 px-2 py-2.5 inline-flex items-center justify-between text-left cursor-pointer hover:bg-(--neutral-600) rounded-lg ${chosenDay === day ? 'bg-(--neutral-600)' : ''}`} onClick={() => {setChosenDay?.('chosenDay', day); setOpen(false)}} type="button">
                   {day}
                 </button>
               </li>
