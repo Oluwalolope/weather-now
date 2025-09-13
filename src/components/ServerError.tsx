@@ -1,19 +1,17 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import iconError from '../assets/icon-error.svg';
 import iconRetry from '../assets/icon-retry.svg';
+import AppContext from '../store/app-context';
 
-type ServerErrorProps = {
-  onHandleServerError: (identifier: string, serverStatus: boolean) => void;
-}
-
-const ServerError = ({ onHandleServerError }: ServerErrorProps) => {
+const ServerError = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const appCtx = useContext(AppContext);
 
     const handleClick = () => {
         setIsLoading(true);
         setTimeout(() => {
             setIsLoading(false);
-            onHandleServerError('isServerWorking', true);
+            appCtx.handleChange('isServerWorking', true);
             console.log('Server reconnected');
         }, 2000);
     }
