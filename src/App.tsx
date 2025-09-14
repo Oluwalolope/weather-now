@@ -9,19 +9,25 @@ import type { AppCtx, AppState } from "./utils/interfaces";
 
 function App() {
   const [data, setData] = useState<AppState>({
+          location: {
+            latitude: '',
+            longitude: ''
+          },
           unit: 'metric' as 'metric' | 'imperial',
           chosenDay: 'Monday',
-          isValidLocation: true,
+          isValidLocation: false,
+          hasUserSearched: false,
+          isFetchingWeatherData: false,
           isSearching: false,
-          isServerWorking: false
+          isServerWorking: true
       });
   
-      const handleChangeHandler = (identifier: string, value: string | boolean) => {
+      const handleChangeHandler = (key: string, value: string | number | boolean | { latitude: string | number; longitude: string | number }) => {
           setData((prevData) => ({
           ...prevData,
-          [identifier]: value
+          [key]: value
       }));
-      console.log(`Data changed: ${identifier} = ${value}`);
+      console.log(`Data changed: ${key} = ${value}`);
       };
 
       const appContextValue: AppCtx = {
@@ -39,7 +45,7 @@ function App() {
             <>
               <h1 className="text-preset-2 text-(--neutral-0) text-wrap align-text-top text-center md:w-[482px] xl:w-[731px]">How's the sky looking today?</h1>
               <Search />
-              {appContextValue.data.isValidLocation? <Forecast /> : <p className='text-preset-4 text-(--neutral-0) text-center'>No search result found!</p>}
+              {appContextValue.data.isValidLocation ? <Forecast /> : <p className='text-preset-4 text-(--neutral-0) text-center'>{appContextValue.data.hasUserSearched ? 'No search result found!' : 'Please enter a location.'}</p>}
             </>
           }
           {!appContextValue.data.isServerWorking && <ServerError/>}

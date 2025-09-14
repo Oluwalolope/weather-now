@@ -18,19 +18,19 @@ type HourlyForecastCardProps = {
 const HourlyForecastCard = ({forecast, hour, temperature}: HourlyForecastCardProps) => {
     const appCtx = useContext(AppContext);
     return (
-        <li className={`flex flex-row justify-between items-center ${appCtx.data.isSearching ? 'motion-safe:animate-loading' : ''} bg-(--neutral-700) border border-(--neutral-600) rounded-lg w-full h-[60px] ps-3 pe-4 py-2.5`}>
+        <li className={`flex flex-row justify-between items-center ${appCtx.data.isFetchingWeatherData ? 'motion-safe:animate-loading' : ''} bg-(--neutral-700) border border-(--neutral-600) rounded-lg w-full h-[60px] ps-3 pe-4 py-2.5`}>
             <div className='inline-flex items-center gap-2'>
-                {(forecast === 'Sunny' && !appCtx.data.isSearching) && <img className='w-[60px] h-[60px] object-cover' src={iconSunny} alt="Sunny" />}
-                {(forecast === 'Rain' && !appCtx.data.isSearching) && <img className='w-[60px] h-[60px] object-cover' src={iconRain} alt="Rain" />}
-                {(forecast === 'Fog' && !appCtx.data.isSearching) && <img className='w-[60px] h-[60px] object-cover' src={iconFog} alt="Fog" />}
-                {(forecast === 'Overcast' && !appCtx.data.isSearching) && <img className='w-[60px] h-[60px] object-cover' src={iconOvercast} alt="Overcast" />}
-                {(forecast === 'Snow' && !appCtx.data.isSearching) && <img className='w-[60px] h-[60px] object-cover' src={iconSnow} alt="Snow" />}
-                {(forecast === 'Storm' && !appCtx.data.isSearching) && <img className='w-[60px] h-[60px] object-cover' src={iconStorm} alt="Storm" />}
-                {(forecast === 'Partly Cloudy' && !appCtx.data.isSearching) && <img className='w-[60px] h-[60px] object-cover' src={iconPartlyCloudy} alt="Partly Cloudy" />}
-                {(forecast === 'Drizzle' && !appCtx.data.isSearching) && <img className='w-[60px] h-[60px] object-cover' src={iconDrizzle} alt="Drizzle" />}
-                { !appCtx.data.isSearching && <span className='text-preset-5-medium text-(--neutral-0)'>{hour}</span>}
+                {(forecast === 'Sunny' && !appCtx.data.isFetchingWeatherData) && <img className='w-[60px] h-[60px] object-cover' src={iconSunny} alt="Sunny" />}
+                {(forecast === 'Rain' && !appCtx.data.isFetchingWeatherData) && <img className='w-[60px] h-[60px] object-cover' src={iconRain} alt="Rain" />}
+                {(forecast === 'Fog' && !appCtx.data.isFetchingWeatherData) && <img className='w-[60px] h-[60px] object-cover' src={iconFog} alt="Fog" />}
+                {(forecast === 'Overcast' && !appCtx.data.isFetchingWeatherData) && <img className='w-[60px] h-[60px] object-cover' src={iconOvercast} alt="Overcast" />}
+                {(forecast === 'Snow' && !appCtx.data.isFetchingWeatherData) && <img className='w-[60px] h-[60px] object-cover' src={iconSnow} alt="Snow" />}
+                {(forecast === 'Storm' && !appCtx.data.isFetchingWeatherData) && <img className='w-[60px] h-[60px] object-cover' src={iconStorm} alt="Storm" />}
+                {(forecast === 'Partly Cloudy' && !appCtx.data.isFetchingWeatherData) && <img className='w-[60px] h-[60px] object-cover' src={iconPartlyCloudy} alt="Partly Cloudy" />}
+                {(forecast === 'Drizzle' && !appCtx.data.isFetchingWeatherData) && <img className='w-[60px] h-[60px] object-cover' src={iconDrizzle} alt="Drizzle" />}
+                { !appCtx.data.isFetchingWeatherData && <span className='text-preset-5-medium text-(--neutral-0)'>{hour}</span>}
             </div>
-            {!appCtx.data.isSearching && <p className='text-preset-7 text-(--neutral-0)'>{temperature}</p>}
+            {!appCtx.data.isFetchingWeatherData && <p className='text-preset-7 text-(--neutral-0)'>{temperature}</p>}
         </li>
     );
 }
