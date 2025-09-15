@@ -25,7 +25,7 @@ const ServerError = () => {
     }
     const handleClick = () => {
         setIsReconnecting(true);
-        testServer();
+        setTimeout(testServer, 2000)
     }
     return (
         <div className="flex flex-col items-center gap-6 text-center">

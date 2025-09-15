@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Header from './components/Header'
 import './index.css'
 import Search from './components/Search';
@@ -31,9 +31,20 @@ function App() {
       };
 
       const appContextValue: AppCtx = {
-              data: data,
-              handleChange: handleChangeHandler
-        }
+        data: data,
+        handleChange: handleChangeHandler
+      }
+      
+      const appCtx = useContext(AppContext);
+
+      useEffect(() => {
+        navigator.geolocation.getCurrentPosition((position) => {
+            console.log(position);
+            appCtx.handleChange('location', { latitude: position.coords.latitude, longitude: position.coords.longitude });
+        }, (error) => {
+            console.log(error);
+        });
+      }, [appCtx])
   
 
   return (

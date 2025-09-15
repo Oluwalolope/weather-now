@@ -1,9 +1,11 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import AppContext from "../store/app-context";
 import SearchDropdown from "./SearchDropdown";
+import SearchInProgress from "./SearchInProgress";
 
 const Search = () => {
     const appCtx = useContext(AppContext);
+    const [hasStartedSearching, setHasStartedSearching] = useState<boolean>(false);
     const [searchResultLocations, setSearchResultLocations] = useState([{
         name: '',
         country: '', 
@@ -22,6 +24,8 @@ const Search = () => {
         }
         searchURL = `https://geocoding-api.open-meteo.com/v1/search?name=${searchedLocation}&count=5&language=en&format=json`;
         appCtx.handleChange('hasUserSearched', true);
+        appCtx.handleChange('isSearching', false);
+        setHasStartedSearching(true);
         fetchLocation(true);
     }
     
@@ -38,6 +42,7 @@ const Search = () => {
             console.log(locationResult.results);
             // Update context state with fetched location data
             if (locationResult.results !== undefined) {
+                setHasStartedSearching(false);
                 appCtx.handleChange('isValidLocation', true);
                 appCtx.handleChange('isSearching', true);
                 const refinedSearchResult = locationResult.results.map((location: { name: string; country: string; latitude: number|string; longitude: number|string; }) => ({
@@ -52,11 +57,13 @@ const Search = () => {
             }
             if (checkLocation && locationResult.results === undefined) {
                 console.log('No location found');
+                setHasStartedSearching(false);
                 appCtx.handleChange('isValidLocation', false);
             }
             
         } catch (error) {
             console.log(error)
+            setHasStartedSearching(false);
             appCtx.handleChange('isServerWorking', false);
         }
     }, [searchURL, appCtx]);
@@ -64,12 +71,6 @@ const Search = () => {
         // On component mount, fetch location based on default or empty search to test server
         fetchLocation();
         console.log('Component mounted, fetching location');
-        navigator.geolocation.getCurrentPosition((position) => {
-            console.log(position);
-            appCtx.handleChange('location', { latitude: position.coords.latitude, longitude: position.coords.longitude });
-        }, (error) => {
-            console.log(error);
-        });
     }, [fetchLocation, appCtx]);
 
 
@@ -79,6 +80,7 @@ const Search = () => {
                 <input type="search" name="location" id="location" placeholder="Search for a place..." className="bg-(--neutral-800) bg-[url('../icon-search.svg')] bg-no-repeat bg-position-[left_24px_top_16px] text-preset-5-medium text-(--neutral-200)  ps-14 pe-6 py-4 rounded-xl w-full h-14 md:flex-3 cursor-pointer" />
                 <button type="submit" className="text-preset-5-medium bg-(--blue-500) text-(--neutral-0) rounded-xl w-full h-14 cursor-pointer hover:bg-(--blue-700) md:flex-1">Search</button>
             </form>
+            {hasStartedSearching && <SearchInProgress />}
             <SearchDropdown locations={searchResultLocations} /> 
         </div>
     );
