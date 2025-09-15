@@ -2,7 +2,7 @@ import { useContext } from "react";
 import AppContext from "../store/app-context";
 
 type LocationsDropdownProps = {
-  locations: { name: string; country: string; latitude: number|string; longitude: number|string; }[] ;
+  locations: { name: string; country: string; countryCode: string; popularlyKnownAs: string; city: string; latitude: number|string; longitude: number|string; }[] ;
 }
 
 const SearchDropdown = ({ locations }: LocationsDropdownProps) => {
@@ -15,11 +15,13 @@ const SearchDropdown = ({ locations }: LocationsDropdownProps) => {
           <ul className="w-full h-auto gap-y-1 flex flex-col">
             {locations.map((location, index) => (
               <li key={index} className={`relative flex-col items-center gap-2 px-4`}>
-                <button className="text-preset-7 text-(--neutral-0) w-full h-10 px-2 py-2.5 inline-flex items-center justify-between text-left cursor-pointer hover:bg-(--neutral-600) rounded-lg " onClick={() => {
+                <button className="text-preset-7 text-(--neutral-0) w-full h-10 px-2 py-2.5 inline-flex items-center gap-3 text-left cursor-pointer hover:bg-(--neutral-600) rounded-lg " onClick={() => {
                     appCtx.handleChange('isSearching', false); 
+                    appCtx.handleChange('isValidLocation', true);
                     appCtx.handleChange('location', { latitude: location.latitude, longitude: location.longitude })
                     }}  type="button">
-                  {location.name}, {location.country}
+                  {(location.countryCode && <img src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${location.countryCode}.svg`} alt={location.countryCode} className="size-5" />)}
+                  {location.popularlyKnownAs && `${location.popularlyKnownAs} ,`} {location.name}, {location.city} {!location.countryCode && `(${location.country})`}
                 </button>
               </li>
             ))}

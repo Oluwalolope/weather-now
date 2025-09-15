@@ -13,6 +13,7 @@ const AppContext = createContext<AppCtx>({
         isValidLocation: true,
         isFetchingWeatherData: false,
         hasUserSearched: false,
+        hasStartedSearching: false,
         isSearching: false,
         isServerWorking: true
     },

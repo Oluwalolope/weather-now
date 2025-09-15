@@ -12,6 +12,7 @@ export type AppState = {
   chosenDay: string;
   isValidLocation: boolean;
   hasUserSearched: boolean;
+  hasStartedSearching: boolean;
   isFetchingWeatherData: boolean;
   isSearching: boolean;
   isServerWorking: boolean;
