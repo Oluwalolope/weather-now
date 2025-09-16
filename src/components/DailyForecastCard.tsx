@@ -30,7 +30,7 @@ const DailyForecastCard = ({ day, forecast, temperature, apparentTemperature }: 
         {(forecast === 'Partly Cloudy' && !appCtx.data.isFetchingWeatherData) && <img className='w-[60px] h-[60px] object-cover' src={iconPartlyCloudy} alt="Partly Cloudy" />}
         {(forecast === 'Drizzle' && !appCtx.data.isFetchingWeatherData) && <img className='w-[60px] h-[60px] object-cover' src={iconDrizzle} alt="Drizzle" />}
         <div className="flex flex-row justify-between w-full">
-            { !appCtx.data.isFetchingWeatherData && <p className="text-preset-7 text-(--neutral-0)">{temperature}</p>}
+            { !appCtx.data.isFetchingWeatherData && <p className="text-preset-7 text-(--neutral-0)">{temperature}°</p>}
             { !appCtx.data.isFetchingWeatherData && <p className="text-preset-7 text-(--neutral-200)">{apparentTemperature}</p>}
         </div>
     </div>;

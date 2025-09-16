@@ -1,4 +1,4 @@
-import { useCallback, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import AppContext from "../store/app-context";
 import SearchDropdown from "./SearchDropdown";
 import SearchInProgress from "./SearchInProgress";
@@ -32,7 +32,7 @@ const Search = () => {
     }
     
 
-    const fetchLocation = useCallback(async(URL: string) => {
+    const fetchLocation = async(URL: string) => {
         try {
             const locationResponse = await fetch(URL);
             const locationResult = await locationResponse.json();
@@ -70,8 +70,9 @@ const Search = () => {
             appCtx.handleChange('hasStartedSearching', false);
             appCtx.handleChange('isServerWorking', false);
         }
-    }, [appCtx]);
+    };
 
+    
 
     return (
         <div>

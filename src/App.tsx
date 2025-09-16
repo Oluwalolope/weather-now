@@ -6,6 +6,7 @@ import Forecast from './components/Forecast';
 import ServerError from './components/ServerError';
 import AppContext from './store/app-context';
 import type { AppCtx, AppState } from "./utils/interfaces";
+import getWeatherData from './utils/getWeatherData';
 
 function App() {
   const [data, setData] = useState<AppState>({
@@ -13,6 +14,8 @@ function App() {
             latitude: '',
             longitude: ''
           },
+          locationName: 'Your Current Location',
+          weatherData: [],
           unit: 'metric' as 'metric' | 'imperial',
           chosenDay: 'Monday',
           isValidLocation: false,
@@ -23,7 +26,7 @@ function App() {
           isServerWorking: true
       });
   
-      const handleChangeHandler = (key: string, value: string | number | boolean | { latitude: string | number; longitude: string | number }) => {
+      const handleChangeHandler = (key: string, value: unknown) => {
           setData((prevData) => ({
           ...prevData,
           [key]: value
@@ -36,15 +39,20 @@ function App() {
         handleChange: handleChangeHandler
       }
       
-
+      let displayedParagraph = 'Please enter a location';
+      if (data.hasUserSearched) {
+        displayedParagraph = 'No search result found!'
+      }
+      
       useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
             console.log(position);
             handleChangeHandler('location', { latitude: position.coords.latitude, longitude: position.coords.longitude });
+            getWeatherData(appContextValue, position.coords.latitude, position.coords.longitude);
         }, (error) => {
             console.log(error);
         });
-      }, [])
+      }, []);
   
 
   return (
@@ -56,8 +64,8 @@ function App() {
             <>
               <h1 className="text-preset-2 text-(--neutral-0) text-wrap align-text-top text-center md:w-[482px] xl:w-[731px]">How's the sky looking today?</h1>
               <Search />
-              {appContextValue.data.isValidLocation && <Forecast />} 
-              {(!data.isValidLocation && !data.isSearching && !data.hasStartedSearching) && <p className='text-preset-4 text-(--neutral-0) text-center'>{data.hasUserSearched ? 'No search result found!' : 'Please enter a location.'}</p>} 
+              {data.isValidLocation && <Forecast />} 
+              {(!data.isValidLocation && !data.isSearching && !data.hasStartedSearching) && <p className='text-preset-4 text-(--neutral-0) text-center'>{displayedParagraph}</p>} 
             </>
           }
           {!data.isServerWorking && <ServerError/>}
