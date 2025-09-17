@@ -14,17 +14,15 @@ const Search = () => {
         latitude: '', 
         longitude: ''
     }]);
-    let searchedLocation = '';
-    let searchURL = `https://geocoding-api.open-meteo.com/v1/search?name=${searchedLocation}&count=5&language=en&format=json`;
     
     const searchAction = (formData: FormData) => {
-        searchedLocation = formData.get('location') as string;
+        const searchedLocation = formData.get('location') as string;
         console.log(`Searched location: ${searchedLocation}`);
         // Prevent empty searches
         if (searchedLocation.trim().length === 0) {
             return;
         }
-        searchURL = `https://geocoding-api.open-meteo.com/v1/search?name=${searchedLocation}&count=5&language=en&format=json`;
+        const searchURL = `https://geocoding-api.open-meteo.com/v1/search?name=${searchedLocation}&count=5&language=en&format=json`;
         appCtx.handleChange('hasUserSearched', true);
         appCtx.handleChange('isSearching', false);
         appCtx.handleChange('hasStartedSearching', true);

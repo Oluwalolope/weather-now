@@ -23,7 +23,6 @@ export type AppState = {
   locationName: string;
   weatherData: WeatherDataItem[];
   unit: 'metric' | 'imperial';
-  chosenDay: string;
   isValidLocation: boolean;
   hasUserSearched: boolean;
   hasStartedSearching: boolean;

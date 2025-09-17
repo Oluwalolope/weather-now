@@ -1,4 +1,4 @@
-import transformWeatherData from "./calculations";
+import transformWeatherData from "./transformWeatherData";
 
 const getWeatherData = async(context: { handleChange: (key: string, value: unknown ) => void; data: { unit: string; }; }, latitude: string | number, longitude: string | number) => {
     context.handleChange('isFetchingWeatherData', true);
@@ -13,13 +13,10 @@ const getWeatherData = async(context: { handleChange: (key: string, value: unkno
         if (!weatherResponse.ok) {
             throw new Error('Failed to get weather data');
         }
-        console.log(weatherResult);
+        
         context.handleChange('isValidLocation', true);
 
         const { currentForecast, dailyForecast, hourlyForecast } = transformWeatherData(weatherResult);
-        console.log('Current Forecast:', currentForecast);
-        console.log('Daily Forecast:', dailyForecast);
-        console.log('Hourly Forecast:', hourlyForecast);
 
         // Update context state with fetched weather data
         context.handleChange('weatherData', [currentForecast, dailyForecast, hourlyForecast]);

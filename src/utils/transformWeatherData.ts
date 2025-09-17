@@ -64,11 +64,11 @@ const getForecastFromWMO = (code: number): string => {
 };
 
 // ==== Transformer Function ====
-function transformWeatherData(data: WeatherApiResponse): {
+const transformWeatherData = (data: WeatherApiResponse): {
   currentForecast: CurrentForecast;
   dailyForecast: DailyForecast[];
   hourlyForecast: HourlyForecast[];
-} {
+} => {
   // === CURRENT FORECAST ===
   const todayIndex = 0;
   const currentDate = new Date(data.current.time);
@@ -82,11 +82,11 @@ function transformWeatherData(data: WeatherApiResponse): {
   const currentForecast: CurrentForecast = {
     forecast: getForecastFromWMO(data.daily.weather_code[todayIndex]),
     day: currentDate.toLocaleDateString("en-US", options),
-    maxTemperature: data.current.temperature_2m,
-    apparentTemperature: data.current.apparent_temperature,
-    precipitation: data.current.precipitation,
-    windSpeed: data.current.wind_speed_10m,
-    humidity: data.current.relative_humidity_2m
+    maxTemperature: Math.round(data.current.temperature_2m),
+    apparentTemperature: Math.round(data.current.apparent_temperature),
+    precipitation: Math.round(data.current.precipitation),
+    windSpeed: Math.round(data.current.wind_speed_10m),
+    humidity: Math.round(data.current.relative_humidity_2m)
   };
 
   // === DAILY FORECAST ===
@@ -97,25 +97,24 @@ function transformWeatherData(data: WeatherApiResponse): {
     return {
       forecast: getForecastFromWMO(data.daily.weather_code[i]),
       day,
-      max: data.daily.temperature_2m_max[i],
-      min: data.daily.temperature_2m_min[i]
+      max: Math.round(data.daily.temperature_2m_max[i]),
+      min: Math.round(data.daily.temperature_2m_min[i])
     };
   });
 
-  // === HOURLY FORECAST (12 hrs from current) ===
+  // === HOURLY FORECAST  ===
 
   const formatHour = (iso: string): string =>
   new Date(iso).toLocaleTimeString("en-US", { hour: "numeric", hour12: true });
 
-  const hourlyForecast: HourlyForecast[] = data.hourly.time.slice(0, 24).map((time, i) => ({
+  const hourlyForecast: HourlyForecast[] = data.hourly.time.slice(0, 168).map((time, i) => ({
     forecast: getForecastFromWMO(data.daily.weather_code[0]), // fallback since no hourly weather_code
     time: formatHour(time),
-    temperature: data.hourly.temperature_2m[i],
+    temperature: Math.round(data.hourly.temperature_2m[i]),
+    day: new Date(time).toLocaleDateString("en-US", { weekday: "long" })
   }));
 
   return { currentForecast, dailyForecast, hourlyForecast };
 }
 
-// ==== Example usage ====
-// const { currentForecast, dailyForecast, hourlyForecast } = transformWeatherData(apiResponse);
 export default transformWeatherData;

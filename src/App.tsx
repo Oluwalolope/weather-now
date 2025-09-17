@@ -9,6 +9,7 @@ import type { AppCtx, AppState } from "./utils/interfaces";
 import getWeatherData from './utils/getWeatherData';
 
 function App() {
+  const [displayedParagraph, setDisplayedParagraph] = useState('Please enter a location');
   const [data, setData] = useState<AppState>({
           location: {
             latitude: '',
@@ -17,7 +18,6 @@ function App() {
           locationName: 'Your Current Location',
           weatherData: [],
           unit: 'metric' as 'metric' | 'imperial',
-          chosenDay: 'Monday',
           isValidLocation: false,
           hasUserSearched: false,
           hasStartedSearching: false,
@@ -31,7 +31,6 @@ function App() {
           ...prevData,
           [key]: value
       }));
-      console.log(`Data changed: ${key} = ${value}`);
       };
 
       const appContextValue: AppCtx = {
@@ -39,16 +38,15 @@ function App() {
         handleChange: handleChangeHandler
       }
       
-      let displayedParagraph = 'Please enter a location';
       if (data.hasUserSearched) {
-        displayedParagraph = 'No search result found!'
+        setDisplayedParagraph('No search result found!');
       }
       
       useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
-            console.log(position);
-            handleChangeHandler('location', { latitude: position.coords.latitude, longitude: position.coords.longitude });
-            getWeatherData(appContextValue, position.coords.latitude, position.coords.longitude);
+          handleChangeHandler('location', { latitude: position.coords.latitude, longitude: position.coords.longitude });
+          getWeatherData(appContextValue, position.coords.latitude, position.coords.longitude);
+          setDisplayedParagraph('Getting weather data for your current location...');
         }, (error) => {
             console.log(error);
         });
