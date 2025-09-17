@@ -2,7 +2,7 @@ import transformWeatherData from "./transformWeatherData";
 
 const getWeatherData = async(context: { handleChange: (key: string, value: unknown ) => void; data: { unit: string; }; }, latitude: string | number, longitude: string | number) => {
     context.handleChange('isFetchingWeatherData', true);
-    let weatherURL = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m&current=temperature_2m,is_day,relative_humidity_2m,apparent_temperature,wind_speed_10m,precipitation`;
+    let weatherURL = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m&current=temperature_2m,is_day,relative_humidity_2m,apparent_temperature,wind_speed_10m,precipitation&hourly=weather_code`;
     if (context.data.unit === 'imperial') {
         weatherURL += `&wind_speed_unit=mph&temperature_unit=fahrenheit&precipitation_unit=inch`;
     }
@@ -13,11 +13,10 @@ const getWeatherData = async(context: { handleChange: (key: string, value: unkno
         if (!weatherResponse.ok) {
             throw new Error('Failed to get weather data');
         }
-        
+
         context.handleChange('isValidLocation', true);
 
         const { currentForecast, dailyForecast, hourlyForecast } = transformWeatherData(weatherResult);
-
         // Update context state with fetched weather data
         context.handleChange('weatherData', [currentForecast, dailyForecast, hourlyForecast]);
     } catch (error) {

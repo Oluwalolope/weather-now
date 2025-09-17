@@ -18,6 +18,7 @@ interface DailyData {
 
 interface HourlyData {
   time: string[];
+  weather_code: number[]
   temperature_2m: number[];
 }
 
@@ -108,7 +109,7 @@ const transformWeatherData = (data: WeatherApiResponse): {
   new Date(iso).toLocaleTimeString("en-US", { hour: "numeric", hour12: true });
 
   const hourlyForecast: HourlyForecast[] = data.hourly.time.slice(0, 168).map((time, i) => ({
-    forecast: getForecastFromWMO(data.daily.weather_code[0]), // fallback since no hourly weather_code
+    forecast: getForecastFromWMO(data.hourly.weather_code[i]), // fallback since no hourly weather_code
     time: formatHour(time),
     temperature: Math.round(data.hourly.temperature_2m[i]),
     day: new Date(time).toLocaleDateString("en-US", { weekday: "long" })
