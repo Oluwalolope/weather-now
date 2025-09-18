@@ -16,7 +16,6 @@ const CurrentForecast = () => {
     const appCtx = useContext(AppContext);
     return (
         <>
-            <div className='hidden size-0 bg-[url("./bg-today-small.svg")] md:bg-[url("./bg-today-large.svg")] bg-no-repeat bg-cover'></div>
             <div className={`flex flex-col md:flex-row md:justify-between items-center w-full h-[286px] bg-(--blue-500) rounded-[20px] px-6 gap-4 py-10 ${appCtx.data.isFetchingWeatherData ? 'motion-safe:animate-loading bg-(--neutral-800)' : 'bg-[url("./bg-today-small.svg")] md:bg-[url("./bg-today-large.svg")] bg-no-repeat bg-cover'}`}>
                 {appCtx.data.isFetchingWeatherData ? <Loader /> : <>
                     <div className={`flex flex-col gap-3 items-center md:items-start ${appCtx.data.isFetchingWeatherData ? 'animate-loading' : ''}`}>
