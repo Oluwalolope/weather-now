@@ -51,12 +51,10 @@ const Search = () => {
                     latitude: location.latitude,
                     longitude: location.longitude
                 }));
-                console.log(refinedSearchResult);
                 setSearchResultLocations(refinedSearchResult);
                 // Update other context states as needed with locationResult
             }
             if (locationResult.results === undefined) {
-                console.log('No location found');
                 appCtx.handleChange('hasStartedSearching', false);
                 appCtx.handleChange('isValidLocation', false);
             }

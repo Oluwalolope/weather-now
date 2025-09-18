@@ -50,8 +50,9 @@ function App() {
           getWeatherData(appContextValue, position.coords.latitude, position.coords.longitude);
           setDisplayedParagraph('Getting weather data for your current location...');
         }, (error) => {
-            console.log(error);
+          console.log(error);
         });
+        handleChangeHandler('location', { latitude: 0, longitude: 0 });
       }, []);
   
 
