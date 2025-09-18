@@ -23,7 +23,7 @@ const SearchDropdown = ({ locations }: LocationsDropdownProps) => {
                     appCtx.handleChange('locationName', `${location.name}, ${location.country}`);
                     getWeatherData(appCtx, location.latitude, location.longitude);
                     }}  type="button">
-                  {(location.countryCode && <img src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${location.countryCode}.svg`} alt={location.countryCode} className="size-5" />)}
+                  {(location.countryCode && <img src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${location.countryCode}.svg`} alt={location.countryCode} className="size-5" />)}
                   {location.popularlyKnownAs && `${location.popularlyKnownAs} ,`} {location.name}, {location.city} {!location.countryCode && `(${location.country})`}
                 </button>
               </li>
