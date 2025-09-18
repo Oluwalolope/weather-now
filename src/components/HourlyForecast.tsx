@@ -3,6 +3,13 @@ import DaysDropdown from "./DaysDropdown";
 import HourlyForecastCard from "./HourlyForecastCard";
 import AppContext from "../store/app-context";
 
+interface HourlyForecast {
+  forecast: string;
+  time: string;
+  temperature: number;
+  day: string;
+}
+
 const HourlyForecast = () => {
     const [chosenDay, setChosenDay] = useState('Monday');
     const appCtx = useContext(AppContext);
@@ -18,7 +25,7 @@ const HourlyForecast = () => {
                 <DaysDropdown days={daysOfTheWeek} chosenDay={chosenDay} handleDayChange={handleDayChange} />
             </div>
             <ul className="h-full flex flex-col gap-4 overflow-y-auto scrollbar scrollbar-w-1 scrollbar-h-[262px] scrollbar-thumb-[#302F4A] scrollbar-thumb-rounded-full scrollbar-track-transparent focus:outline-none">
-                {appCtx.data.weatherData[2].map((hourData, index) => {
+                {appCtx.data.weatherData[2].map((hourData: HourlyForecast, index: number | string) => {
                     return (
                         hourData.day === chosenDay && (
                             <HourlyForecastCard key={index} forecast={hourData.forecast} hour={hourData.time} temperature={`${hourData.temperature}°`} />

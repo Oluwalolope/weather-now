@@ -1,3 +1,5 @@
+import type React from "react";
+
 export type AppCtx = {
     data: AppState;
     handleChange: (key: string, value: unknown) => void
@@ -11,7 +13,10 @@ interface WeatherDataItem {
   humidity: number;
   windSpeed: number;
   precipitation: number;
-  // add other properties as needed
+  map: {
+    [index: string]: React.ReactNode;
+    (key: unknown): React.ReactNode;
+  };
 }
 
 

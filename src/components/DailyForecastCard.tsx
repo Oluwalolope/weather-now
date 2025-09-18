@@ -13,8 +13,8 @@ import AppContext from '../store/app-context';
 type DailyForecastCardProps = {
     day: string;
     forecast: string;
-    temperature: string;
-    apparentTemperature: string;
+    temperature: string | number;
+    apparentTemperature: string | number;
 }
 
 const DailyForecastCard = ({ day, forecast, temperature, apparentTemperature }: DailyForecastCardProps) => {

@@ -11,7 +11,6 @@ const AppContext = createContext<AppCtx>({
         },
         locationName: 'Your Current Location',
         weatherData: [],
-        chosenDay: 'Monday',
         isValidLocation: true,
         isFetchingWeatherData: false,
         hasUserSearched: false,
