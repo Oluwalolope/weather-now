@@ -17,7 +17,6 @@ const Search = () => {
     
     const searchAction = (formData: FormData) => {
         const searchedLocation = formData.get('location') as string;
-        console.log(`Searched location: ${searchedLocation}`);
         // Prevent empty searches
         if (searchedLocation.trim().length === 0) {
             return;
@@ -39,7 +38,6 @@ const Search = () => {
                 throw new Error('Failed to get location');
             }
 
-            console.log(locationResult.results);
             // Update context state with fetched location data
             if (locationResult.results !== undefined) {
                 appCtx.handleChange('hasStartedSearching', false);

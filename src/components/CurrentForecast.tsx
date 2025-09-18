@@ -36,10 +36,10 @@ const CurrentForecast = () => {
                 </>}
             </div>
             <div className='grid grid-cols-2 gap-4 justify-items-center md:grid-cols-4 md:gap-5 pt-5 xl:pt-8'>
-                <CurrentForecastCard measuredQuantity="Feels Like" measuredValue={`${appCtx.data.weatherData[0].apparentTemperature}${appCtx.data.unit === 'imperial' ? '°F' : '°C'}`} />
-                <CurrentForecastCard measuredQuantity="Humidity" measuredValue={`${appCtx.data.weatherData[0].humidity}%`} />
-                <CurrentForecastCard measuredQuantity="Wind Speed" measuredValue={`${appCtx.data.weatherData[0].windSpeed} ${appCtx.data.unit === 'imperial' ? 'mph' : 'km/h'}`} />
-                <CurrentForecastCard measuredQuantity="Precipitation" measuredValue={`${appCtx.data.weatherData[0].precipitation} ${appCtx.data.unit === 'imperial' ? 'in' : 'mm'}`} />
+                <CurrentForecastCard measuredQuantity="Feels Like" measuredValue={`${appCtx.data.weatherData[0]?.apparentTemperature}${appCtx.data.unit === 'imperial' ? '°F' : '°C'}`} />
+                <CurrentForecastCard measuredQuantity="Humidity" measuredValue={`${appCtx.data.weatherData[0]?.humidity}%`} />
+                <CurrentForecastCard measuredQuantity="Wind Speed" measuredValue={`${appCtx.data.weatherData[0]?.windSpeed} ${appCtx.data.unit === 'imperial' ? 'mph' : 'km/h'}`} />
+                <CurrentForecastCard measuredQuantity="Precipitation" measuredValue={`${appCtx.data.weatherData[0]?.precipitation} ${appCtx.data.unit === 'imperial' ? 'in' : 'mm'}`} />
             </div>
         </>
     );
