@@ -38,9 +38,11 @@ function App() {
         handleChange: handleChangeHandler
       }
       
-      if (data.hasUserSearched) {
-        setDisplayedParagraph('No search result found!');
-      }
+      useEffect(() => {
+        if (data.hasUserSearched) {
+          setDisplayedParagraph('No search result found!');
+        }
+      }, []);
       
       useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {

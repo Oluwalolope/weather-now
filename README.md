@@ -1,69 +1,68 @@
-# React + TypeScript + Vite
+# Weather Now
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive weather application built for the Frontend Mentor Hackathon. It fetches real-time weather data for any city using the OpenWeatherMap API and displays current conditions, temperature, humidity, wind speed, and more.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Search for weather by city name
+- Displays current temperature, weather condition, humidity, wind speed
+- Responsive design for mobile and desktop
+- Error handling for invalid city names or network issues
+- Loading indicator while fetching data
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React
+- JavaScript (ES6+)
+- CSS Modules / Styled Components
+- OpenWeatherMap API
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Getting Started
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### Prerequisites
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Node.js (v16+ recommended)
+- npm or yarn
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Installation
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. Clone the repository:
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+  ```bash
+  git clone https://github.com/Oluwalolope/weather-now.git
+    ```
+
+  2. Navigate to the project directory:
+
+    ```bash
+    cd weather-now
+    ```
+
+  3. Install dependencies:
+
+    ```bash
+    npm install
+    # or
+    yarn install
+    ```
+
+  ### Usage
+
+  1. Start the development server:
+
+    ```bash
+    npm start
+    # or
+    yarn start
+    ```
+
+  2. Open [http://localhost:5173](http://localhost:5173) in your browser to view the app.
+
+
+  ## Contributing
+
+  Contributions are welcome! Please open issues or submit pull requests for improvements.
+
+  ## License
+
+  This project is licensed under the MIT License.
